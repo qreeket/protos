@@ -1,0 +1,18 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/duration.proto";
+
+
+import "billing.proto";
+
+service BillingService {
+  rpc charge(ChargeRequest) returns (ChargeResponse);
+  rpc get_transaction(google.protobuf.StringValue) returns (Transaction);
+  rpc list_transactions(google.protobuf.Duration) returns (ListTransactionsResponse);
+  rpc delete_transaction(google.protobuf.StringValue) returns (google.protobuf.Empty);
+}

@@ -1,0 +1,21 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+import "announcement.proto";
+
+service AnnouncementService {
+  // CRUD operations for Announcements
+  rpc GetAnnouncements(google.protobuf.Empty) returns (stream AnnouncementsList);
+  rpc GetAnnouncement(google.protobuf.StringValue) returns (Announcement);
+  rpc CreateAnnouncement(CreateAnnouncementRequest) returns (Announcement);
+  rpc UpdateAnnouncement(UpdateAnnouncementRequest) returns (Announcement);
+  rpc DeleteAnnouncement(google.protobuf.StringValue) returns (google.protobuf.Empty);
+
+  // Subscribe to Announcements
+  rpc SubscribeToAnnouncements(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc UnsubscribeFromAnnouncements(google.protobuf.StringValue) returns (google.protobuf.Empty);
+}

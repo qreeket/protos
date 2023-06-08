@@ -1,0 +1,30 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+message CreateAnnouncementRequest {
+  Announcement announcement = 1;
+}
+
+message UpdateAnnouncementRequest {
+  string id = 1;
+  Announcement announcement = 2;
+}
+
+message AnnouncementsList {
+  repeated Announcement announcements = 1;
+}
+
+message Announcement {
+  string id = 1;
+  string title = 2;
+  string body = 3;
+  string author = 4;
+  optional google.protobuf.StringValue image_url = 5;
+  optional google.protobuf.StringValue link_url = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}

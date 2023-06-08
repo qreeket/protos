@@ -1,0 +1,28 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+import "messaging.proto";
+
+service MessagingService {
+  rpc sendMessage(MessageListItem) returns (MessageListItem);
+  rpc deleteMessage(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc getMessages(GetMessagesRequest) returns (stream MessageList);
+  rpc editMessage(MessageListItem) returns (MessageListItem);
+  rpc reactToMessage(google.protobuf.StringValue) returns (MessageListItem);
+
+  rpc createThread(MessageListItem) returns (MessageListItem);
+  rpc deleteThread(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc getThreads(GetMessagesRequest) returns (stream MessageList);
+  rpc editThread(MessageListItem) returns (MessageListItem);
+  rpc reactToThread(google.protobuf.StringValue) returns (MessageListItem);
+
+
+  rpc getDirectMessengers(google.protobuf.Empty) returns (stream DirectMessengerList);
+  rpc getDirectMessages(GetMessagesRequest) returns (stream MessageList);
+  rpc addDirectMessenger(google.protobuf.StringValue) returns (DirectMessenger);
+  rpc removeDirectMessenger(google.protobuf.StringValue) returns (google.protobuf.Empty);
+}

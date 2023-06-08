@@ -1,0 +1,123 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/timestamp.proto";
+
+message AuthenticateWithSocialAccountRequest {
+  string phone_number = 1;
+  string username = 2;
+  oneof auth_avatar {
+    string avatar_url = 3;
+    bytes avatar_data = 4;
+  }
+  string country_id = 5;
+  string college_id = 6;
+  string email = 7;
+}
+
+message GetCollegesResponse {
+  repeated College colleges = 1;
+}
+
+message GetCountriesResponse {
+  repeated Country countries = 1;
+}
+
+// validate access token response message
+message ValidateAccessTokenResponse {
+  optional string account_id = 1;
+  optional string phone_number = 2;
+  optional string username = 3;
+}
+
+message RequestPasswordResetRequest {
+  oneof request_password_reset_payload {
+    string phone_number = 1;
+    string email = 2;
+  }
+}
+
+// login request message
+message LoginRequest {
+  oneof payload  {
+    string phone_number = 1;
+    string email = 2;
+  }
+  string password = 3;
+  string country_id = 4;
+}
+
+// auth response message contains token and refresh token
+
+message RegisterRequest {
+  optional string phone_number = 1;
+  string password = 2;
+  string username = 4;
+  oneof avatar {
+    string avatar_url = 5;
+    bytes avatar_data = 6;
+  }
+  string country_id = 9;
+  string college_id = 10;
+  optional string email = 11;
+}
+
+message ResetPasswordRequest {
+  oneof reset_payload {
+    string phone_number = 1;
+    string email = 2;
+  }
+  string password = 4;
+  string reset_token = 5;
+}
+
+message Account {
+  string id = 1;
+  optional string phone_number = 2;
+  string username = 3;
+  string language_id = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  optional string avatar_url = 7;
+  string country_id = 9;
+  optional string device_id = 10;
+  optional string device_token = 11;
+  optional string device_type = 12;
+  optional bool is_verified = 13;
+  optional UserType user_type = 14;
+  string college_id = 15;
+  optional string email = 16;
+  optional bool is_visible = 17;
+}
+
+message AccessTokenStore {
+  string access_token = 1;
+  string refresh_token = 3;
+}
+
+message Country {
+  string id = 1;
+  string name = 2;
+  string code = 3;
+  string dial_code = 4;
+  string currency = 5;
+  string currency_symbol = 6;
+  string flag_url = 7;
+  string language_id = 8;
+}
+
+enum UserType {
+  standard = 0;
+  premium = 1;
+}
+
+message College {
+  string id = 1;
+  string name = 2;
+  string address = 3;
+  string logo_url = 4;
+  string website = 5;
+  string country_id = 6;
+  optional string banner_url = 7;
+}

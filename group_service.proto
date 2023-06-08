@@ -1,0 +1,58 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+import "group.proto";
+
+service GroupChannelService {
+  // region channels
+  rpc createChannel(CreateChannelRequest) returns (Channel);
+  rpc getChannel(google.protobuf.StringValue) returns (Channel);
+  rpc getChannelsForGroup(google.protobuf.StringValue) returns (stream ChannelList);
+  rpc updateChannel(Channel) returns (Channel);
+  rpc deleteChannel(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc leaveChannel(ManageGroupOrChannel) returns (google.protobuf.Empty);
+  // user can only subscribe to / unsubscribe from public channels
+  rpc subscribeToChannel(ChannelSubscriptionRequest) returns (google.protobuf.Empty);
+  rpc unsubscribeFromChannel(ChannelSubscriptionRequest) returns (google.protobuf.Empty);
+  rpc manageChannelSubscription(ManageChannelSubscriptionRequest) returns (google.protobuf.Empty);
+  rpc getChannelSubscriptionsForUser(google.protobuf.StringValue) returns (stream ChannelSubscriptionList);
+  // all users can mute / unmute channels
+  rpc muteChannel(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
+  rpc unmuteChannel(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
+
+  // endregion channels
+
+  // region groups
+  rpc createGroup(CreateGroupRequest) returns (Group);
+  rpc getGroup(google.protobuf.StringValue) returns (Group);
+  // all groups a user is a member/admin of
+  rpc getGroups(google.protobuf.StringValue) returns (stream GroupList);
+  rpc updateGroup(Group) returns (Group);
+  rpc deleteGroup(DeleteGroupRequest) returns (google.protobuf.Empty);
+  rpc leaveGroup(ManageGroupOrChannel) returns (google.protobuf.Empty);
+
+  // admins can invite users to groups
+  rpc inviteToGroup(GroupInviteRequest) returns (google.protobuf.Empty);
+  // get all group invites for a user
+  rpc getGroupInvitesForUser(google.protobuf.StringValue) returns (stream GroupInviteList);
+  // get all group invites for a group
+  rpc getGroupInvitesForGroup(google.protobuf.StringValue) returns (stream GroupInviteList);
+  // revoke a channel invite (only admins can revoke invites)
+  rpc revokeGroupInvite(RevokeGroupInviteRequest) returns (google.protobuf.Empty);
+  // accept / decline a group invite
+  rpc manageGroupInvite(ManageGroupInviteRequest) returns (google.protobuf.Empty);
+  // users can mute / unmute groups
+  rpc muteGroup(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
+  rpc unmuteGroup(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
+  // promote / demote group admins (only group admins can promote / demote new admins)
+  rpc promoteGroupAdmin(ManageAdminRequest) returns (google.protobuf.Empty);
+  rpc demoteGroupAdmin(ManageAdminRequest) returns (google.protobuf.Empty);
+  // admins can ban / unban users from groups
+  rpc banFromGroup(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
+  rpc unbanFromGroup(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
+  // endregion groups
+}

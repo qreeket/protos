@@ -1,0 +1,101 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/timestamp.proto";
+
+enum MessageStatus {
+  MESSAGE_STATUS_UNSPECIFIED = 0;
+  MESSAGE_STATUS_DRAFT = 1;
+  MESSAGE_STATUS_SENT = 2;
+  MESSAGE_STATUS_RECEIVED = 3;
+  MESSAGE_STATUS_READ = 4;
+  MESSAGE_STATUS_DELETED = 5;
+}
+
+enum MessageAttachmentType {
+  MESSAGE_ATTACHMENT_TYPE_UNSPECIFIED = 0;
+  MESSAGE_ATTACHMENT_TYPE_IMAGE = 1;
+  MESSAGE_ATTACHMENT_TYPE_VIDEO = 2;
+  MESSAGE_ATTACHMENT_TYPE_AUDIO = 3;
+  MESSAGE_ATTACHMENT_TYPE_FILE = 4;
+  MESSAGE_ATTACHMENT_TYPE_LINK = 5;
+  MESSAGE_ATTACHMENT_TYPE_GIF = 6;
+  MESSAGE_ATTACHMENT_TYPE_STICKER = 7;
+  MESSAGE_ATTACHMENT_TYPE_LOCATION = 8;
+}
+
+message MessageChat {
+  string id = 1;
+  string sender = 2;
+  string recipient = 3;
+  string body = 5;
+  MessageStatus status = 6;
+  google.protobuf.Timestamp createdAt = 7;
+  google.protobuf.Timestamp updatedAt = 8;
+  google.protobuf.Timestamp sentAt = 9;
+  google.protobuf.Timestamp receivedAt = 10;
+  google.protobuf.Timestamp readAt = 11;
+  google.protobuf.Timestamp deletedAt = 12;
+  repeated string readBy = 13;
+  optional string attachment = 14;
+  MessageAttachmentType attachmentType = 15;
+  repeated string reactions = 16;
+  repeated string mentions = 17;
+}
+
+message MessageThread {
+  string id = 1;
+  string sender = 2;
+  string recipient = 3;
+  string body = 5;
+  MessageStatus status = 6;
+  google.protobuf.Timestamp createdAt = 7;
+  google.protobuf.Timestamp updatedAt = 8;
+  google.protobuf.Timestamp sentAt = 9;
+  google.protobuf.Timestamp receivedAt = 10;
+  google.protobuf.Timestamp readAt = 11;
+  google.protobuf.Timestamp deletedAt = 12;
+  string subject = 13;
+  repeated string readBy = 14;
+  repeated string reactions = 15;
+  repeated string mentions = 16;
+  repeated MessageChat messages = 17;
+}
+
+message MessageListItem {
+  oneof item {
+    MessageChat message = 1;
+    MessageThread thread = 2;
+  }
+}
+
+message MessageList {
+  repeated MessageListItem messages = 1;
+}
+
+message GetMessagesRequest {
+  string sender = 1;
+  oneof recipient {
+    string dm = 3;
+    string channel = 4;
+  }
+}
+
+message DirectMessenger {
+  string id = 1;
+  string name = 2;
+  string avatar = 3;
+  bool online = 4;
+  google.protobuf.Timestamp createdAt = 5;
+  google.protobuf.Timestamp updatedAt = 6;
+  google.protobuf.Timestamp lastSeen = 7;
+  bool muted = 8;
+  bool blocked = 9;
+  bool archived = 10;
+  optional string bio = 11;
+}
+
+message DirectMessengerList {
+  repeated DirectMessenger messengers = 1;
+}

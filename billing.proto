@@ -1,0 +1,36 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/timestamp.proto";
+
+message ListTransactionsResponse {
+  repeated Transaction transactions = 1;
+}
+
+message ChargeRequest {
+  string label = 1;
+  string description = 2;
+  double amount = 3;
+  string currency = 4;
+  string source = 5;
+  string customer = 6;
+}
+
+message ChargeResponse {
+  string transaction_id = 1;
+  string status = 2;
+}
+
+message Transaction {
+  string id = 1;
+  string label = 2;
+  string description = 3;
+  double amount = 4;
+  string currency = 5;
+  string source = 6;
+  string customer = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+  string status = 10;
+}

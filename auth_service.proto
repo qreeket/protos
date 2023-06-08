@@ -1,0 +1,51 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+import "auth.proto";
+
+// authentication service for user login, register, reset password, refresh token, logout and etc.
+service AuthService {
+  // auth
+  rpc login (LoginRequest) returns (google.protobuf.StringValue);
+  rpc register (RegisterRequest) returns (google.protobuf.StringValue);
+  rpc reset_password (ResetPasswordRequest) returns (google.protobuf.StringValue);
+  rpc request_password_reset (RequestPasswordResetRequest) returns (google.protobuf.StringValue);
+  rpc logout (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc verify_password (google.protobuf.StringValue) returns (google.protobuf.Empty);
+
+  // premium account upgrade
+  rpc upgrade_to_premium (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc downgrade_to_standard (google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // request public access token for unauthenticated calls
+  rpc request_public_access_token (google.protobuf.Empty) returns (google.protobuf.StringValue);
+
+  // validate access token from microservices for authorization (only for internal calls)
+  rpc validate_access_token (google.protobuf.Empty) returns (ValidateAccessTokenResponse);
+
+  // account
+  rpc get_account (google.protobuf.Empty) returns (Account);
+  rpc get_account_by_phone_number (google.protobuf.StringValue) returns (Account);
+  rpc get_account_by_id (google.protobuf.StringValue) returns (Account);
+  rpc update_account (Account) returns (Account);
+  rpc delete_account (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc authenticate_account (AuthenticateWithSocialAccountRequest) returns (google.protobuf.StringValue);
+  rpc check_email (google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc check_phone_number (google.protobuf.StringValue) returns (google.protobuf.Empty);
+
+  // country
+  rpc get_countries (google.protobuf.Empty) returns (GetCountriesResponse);
+  rpc get_country_by_id (google.protobuf.StringValue) returns (Country);
+  rpc add_country (Country) returns (Country);
+  rpc delete_country (google.protobuf.StringValue) returns (google.protobuf.Empty);
+
+  // college
+  rpc get_colleges_for_country (google.protobuf.StringValue) returns (GetCollegesResponse);
+  rpc get_college_by_id (google.protobuf.StringValue) returns (College);
+  rpc add_college (College) returns (College);
+  rpc delete_college (google.protobuf.StringValue) returns (google.protobuf.Empty);
+}

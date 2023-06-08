@@ -1,0 +1,167 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "google/protobuf/timestamp.proto";
+
+message DeleteGroupRequest {
+  string group = 1;
+  string admin = 2;
+}
+
+message ManageAdminRequest {
+  string group = 1;
+  string user = 2;
+  string admin = 3;
+}
+
+message ManageGroupOrChannel {
+  string user = 1;
+  oneof payload {
+    string channel = 2;
+    string group = 3;
+  }
+}
+
+message ManageGroupOrChannelRequest {
+  oneof payload {
+    string channel = 1;
+    string group = 2;
+  }
+  string user = 3;
+  string admin = 4;
+}
+
+message ManageChannelSubscriptionRequest {
+  string channel = 1;
+  string user = 2;
+  string token = 3;
+  bool accept = 4;
+}
+
+message ChannelSubscriptionList {
+  repeated ChannelSubscription subscriptions = 1;
+}
+
+message ChannelSubscription {
+  string id = 1;
+  Channel channel = 2;
+  string user = 3;
+  string token = 4;
+  ChannelOrGroupInviteStatus status = 5;
+}
+
+message RevokeGroupInviteRequest {
+  string inviteId = 1;
+  string token = 2;
+  string admin = 3; // only admins can revoke invites
+}
+
+message ChannelSubscriptionRequest {
+  string channel = 1;
+  string user = 2;
+}
+
+message GroupInviteRequest {
+  string group = 1;
+  string user = 2;
+  repeated string channels = 3;
+  string admin = 4; // only admins can invite users to channels
+
+}
+
+message ManageGroupInviteRequest {
+  string inviteId = 1;
+  string token = 2;
+  bool accept = 3;
+  repeated string channels = 4;
+}
+
+message GroupList {
+  repeated Group groups = 1;
+}
+
+enum ChannelType {
+  public = 0;
+  private = 1;
+}
+
+message Channel {
+  string name = 1;
+  optional string description = 2;
+  string owner = 11;
+  repeated Subscriber subscribers = 6;
+  repeated string muted = 9;
+  ChannelType type = 10;
+  google.protobuf.Timestamp created = 12;
+  google.protobuf.Timestamp updated = 13;
+  string id = 14;
+  string group = 15;
+  optional string icon = 16;
+}
+
+message ChannelList {
+  repeated Channel channels = 1;
+}
+
+enum ChannelOrGroupInviteStatus {
+  pending = 0;
+  accepted = 1;
+  declined = 2;
+}
+
+message GroupInvite {
+  repeated string channels = 1;
+  string admin = 2; // only admins can invite users to channels
+  string token = 3;
+  string id = 4;
+  ChannelOrGroupInviteStatus status = 5;
+  Group group = 6;
+  string user = 7;
+}
+
+message GroupInviteList {
+  repeated GroupInvite invites = 1;
+}
+
+message CreateChannelRequest {
+  string name = 1;
+  optional string description = 2;
+  optional bytes icon = 3;
+  repeated string tags = 5;
+  repeated Subscriber subscribers = 6;
+  string owner = 7;
+  string group = 8;
+  ChannelType type = 9;
+}
+
+message Group {
+  string id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional string icon = 4;
+  repeated Channel channels = 5;
+  repeated Subscriber subscribers = 6;
+  repeated string admins = 7;
+  repeated string banned = 8;
+  repeated string muted = 9;
+  optional string link = 10;
+  repeated string tags = 11;
+  google.protobuf.Timestamp created = 13;
+  google.protobuf.Timestamp updated = 14;
+}
+
+message Subscriber {
+  string id = 1;
+  string name = 2;
+  string avatar = 3;
+  bool online = 4;
+}
+
+message CreateGroupRequest {
+  string name = 1;
+  optional string description = 2;
+  optional bytes icon = 3;
+  repeated string tags = 4;
+  string admin = 6;
+}

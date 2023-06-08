@@ -1,0 +1,22 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+// UploadMediaRequest is the request for uploading media
+message UploadMediaRequest {
+  bytes media = 1;
+  MediaType type = 2;
+  optional string name = 3;
+  optional string owner = 4;
+}
+
+message UploadMediaResponse {
+  string url = 1;
+  uint32 size = 2;
+}
+
+// MediaType is the type of media
+enum MediaType {
+  IMAGE = 0;
+  VIDEO = 1;
+}
