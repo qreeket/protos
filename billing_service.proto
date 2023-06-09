@@ -3,7 +3,6 @@ package qreeket;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
 import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/duration.proto";
 
