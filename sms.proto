@@ -2,9 +2,6 @@ syntax = "proto3";
 package qreeket;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
-import "google/protobuf/empty.proto";
-import "google/protobuf/wrappers.proto";
-
 // verify phone number request message
 message VerifyPhoneRequest {
   string phone_number = 1;
