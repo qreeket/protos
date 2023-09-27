@@ -1,6 +1,6 @@
 syntax = "proto3";
-package common;
-option go_package = "github.com/crataristo4/afscommon/protos";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
 
 message Empty {}
 
