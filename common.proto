@@ -1,5 +1,5 @@
 syntax = "proto3";
-package qreeket;
+package common;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
 message Empty {}
