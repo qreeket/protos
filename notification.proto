@@ -1,0 +1,17 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+message SendNotificationRequest {
+  string title = 1;
+  string body = 2;
+  oneof notification_target {
+    string token = 3;
+    string topic = 4;
+  }
+  map<string, string> data = 5;
+}
+
+message SendNotificationResponse {
+  string message_id = 1;
+}

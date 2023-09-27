@@ -1,0 +1,13 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "notification.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+service NotificationService {
+  rpc sendNotification (SendNotificationRequest) returns (google.protobuf.StringValue);
+  rpc registerDevice (RegisterDeviceRequest) returns (google.protobuf.Empty);
+  rpc unregisterDevice (RegisterDeviceRequest) returns (google.protobuf.Empty);
+}
