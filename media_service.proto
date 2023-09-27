@@ -2,8 +2,7 @@ syntax = "proto3";
 package qreeket;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
-import "google/protobuf/empty.proto";
-import "google/protobuf/wrappers.proto";
+import "common.proto";
 
 import "media.proto";
 
@@ -14,9 +13,9 @@ service MediaService {
   rpc upload_large_media (stream UploadMediaRequest) returns (UploadMediaResponse);
 
   // get media takes a media url and returns a base64 encoded string
-  rpc get_media (google.protobuf.StringValue) returns (google.protobuf.StringValue);
+  rpc get_media (common.StringValue) returns (common.StringValue);
 
   // delete media takes a media url and deletes the media
-  rpc delete_media (google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc delete_media (common.StringValue) returns (common.Empty);
 
 }

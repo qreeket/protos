@@ -2,7 +2,7 @@ syntax = "proto3";
 package qreeket;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
-import "google/protobuf/timestamp.proto";
+import "common.proto";
 
 message ListTransactionsResponse {
   repeated Transaction transactions = 1;
@@ -30,7 +30,7 @@ message Transaction {
   string currency = 5;
   string source = 6;
   string customer = 7;
-  google.protobuf.Timestamp created_at = 8;
-  google.protobuf.Timestamp updated_at = 9;
+  common.Timestamp created_at = 8;
+  common.Timestamp updated_at = 9;
   string status = 10;
 }

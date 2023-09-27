@@ -2,7 +2,7 @@ syntax = "proto3";
 package qreeket;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
-import "google/protobuf/timestamp.proto";
+import "common.proto";
 
 enum MessageStatus {
   MESSAGE_STATUS_UNSPECIFIED = 0;
@@ -31,12 +31,12 @@ message MessageChat {
   string recipient = 3;
   string body = 5;
   MessageStatus status = 6;
-  google.protobuf.Timestamp createdAt = 7;
-  google.protobuf.Timestamp updatedAt = 8;
-  google.protobuf.Timestamp sentAt = 9;
-  google.protobuf.Timestamp receivedAt = 10;
-  google.protobuf.Timestamp readAt = 11;
-  google.protobuf.Timestamp deletedAt = 12;
+  common.Timestamp createdAt = 7;
+  common.Timestamp updatedAt = 8;
+  common.Timestamp sentAt = 9;
+  common.Timestamp receivedAt = 10;
+  common.Timestamp readAt = 11;
+  common.Timestamp deletedAt = 12;
   repeated string readBy = 13;
   optional string attachment = 14;
   MessageAttachmentType attachmentType = 15;
@@ -50,12 +50,12 @@ message MessageThread {
   string recipient = 3;
   string body = 5;
   MessageStatus status = 6;
-  google.protobuf.Timestamp createdAt = 7;
-  google.protobuf.Timestamp updatedAt = 8;
-  google.protobuf.Timestamp sentAt = 9;
-  google.protobuf.Timestamp receivedAt = 10;
-  google.protobuf.Timestamp readAt = 11;
-  google.protobuf.Timestamp deletedAt = 12;
+  common.Timestamp createdAt = 7;
+  common.Timestamp updatedAt = 8;
+  common.Timestamp sentAt = 9;
+  common.Timestamp receivedAt = 10;
+  common.Timestamp readAt = 11;
+  common.Timestamp deletedAt = 12;
   string subject = 13;
   repeated string readBy = 14;
   repeated string reactions = 15;
@@ -87,9 +87,9 @@ message DirectMessenger {
   string name = 2;
   string avatar = 3;
   bool online = 4;
-  google.protobuf.Timestamp createdAt = 5;
-  google.protobuf.Timestamp updatedAt = 6;
-  google.protobuf.Timestamp lastSeen = 7;
+  common.Timestamp createdAt = 5;
+  common.Timestamp updatedAt = 6;
+  common.Timestamp lastSeen = 7;
   bool muted = 8;
   bool blocked = 9;
   bool archived = 10;

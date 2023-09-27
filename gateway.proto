@@ -2,11 +2,8 @@ syntax = "proto3";
 package qreeket;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
-import "google/protobuf/empty.proto";
-import "google/protobuf/wrappers.proto";
-import "google/protobuf/duration.proto";
-
 import "announcement.proto";
+import "common.proto";
 import "auth.proto";
 import "billing.proto";
 import "group.proto";
@@ -16,116 +13,116 @@ import "sms.proto";
 
 service QreeketGatewayService {
   // region announcement
-  rpc GetAnnouncements(google.protobuf.Empty) returns (stream AnnouncementsList);
-  rpc GetAnnouncement(google.protobuf.StringValue) returns (Announcement);
+  rpc GetAnnouncements(common.Empty) returns (stream AnnouncementsList);
+  rpc GetAnnouncement(common.StringValue) returns (Announcement);
   rpc CreateAnnouncement(CreateAnnouncementRequest) returns (Announcement);
   rpc UpdateAnnouncement(UpdateAnnouncementRequest) returns (Announcement);
-  rpc DeleteAnnouncement(google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc SubscribeToAnnouncements(google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc UnsubscribeFromAnnouncements(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc DeleteAnnouncement(common.StringValue) returns (common.Empty);
+  rpc SubscribeToAnnouncements(common.StringValue) returns (common.Empty);
+  rpc UnsubscribeFromAnnouncements(common.StringValue) returns (common.Empty);
   // endregion announcement
 
   // region auth
-  rpc login (LoginRequest) returns (google.protobuf.StringValue);
-  rpc register (RegisterRequest) returns (google.protobuf.StringValue);
-  rpc reset_password (ResetPasswordRequest) returns (google.protobuf.StringValue);
-  rpc request_password_reset (RequestPasswordResetRequest) returns (google.protobuf.StringValue);
-  rpc logout (google.protobuf.Empty) returns (google.protobuf.Empty);
-  rpc verify_password (google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc upgrade_to_premium (google.protobuf.Empty) returns (google.protobuf.Empty);
-  rpc downgrade_to_standard (google.protobuf.Empty) returns (google.protobuf.Empty);
-  rpc request_public_access_token (google.protobuf.Empty) returns (google.protobuf.StringValue);
-  rpc validate_access_token (google.protobuf.Empty) returns (ValidateAccessTokenResponse);
-  rpc get_account (google.protobuf.Empty) returns (Account);
-  rpc get_account_by_phone_number (google.protobuf.StringValue) returns (Account);
-  rpc get_account_by_id (google.protobuf.StringValue) returns (Account);
+  rpc login (LoginRequest) returns (common.StringValue);
+  rpc register (RegisterRequest) returns (common.StringValue);
+  rpc reset_password (ResetPasswordRequest) returns (common.StringValue);
+  rpc request_password_reset (RequestPasswordResetRequest) returns (common.StringValue);
+  rpc logout (common.Empty) returns (common.Empty);
+  rpc verify_password (common.StringValue) returns (common.Empty);
+  rpc upgrade_to_premium (common.Empty) returns (common.Empty);
+  rpc downgrade_to_standard (common.Empty) returns (common.Empty);
+  rpc request_public_access_token (common.Empty) returns (common.StringValue);
+  rpc validate_access_token (common.Empty) returns (ValidateAccessTokenResponse);
+  rpc get_account (common.Empty) returns (Account);
+  rpc get_account_by_phone_number (common.StringValue) returns (Account);
+  rpc get_account_by_id (common.StringValue) returns (Account);
   rpc update_account (Account) returns (Account);
-  rpc delete_account (google.protobuf.Empty) returns (google.protobuf.Empty);
-  rpc authenticate_account (AuthenticateWithSocialAccountRequest) returns (google.protobuf.StringValue);
-  rpc check_email (google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc check_phone_number (google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc get_countries (google.protobuf.Empty) returns (GetCountriesResponse);
-  rpc get_country_by_id (google.protobuf.StringValue) returns (Country);
+  rpc delete_account (common.Empty) returns (common.Empty);
+  rpc authenticate_account (AuthenticateWithSocialAccountRequest) returns (common.StringValue);
+  rpc check_email (common.StringValue) returns (common.Empty);
+  rpc check_phone_number (common.StringValue) returns (common.Empty);
+  rpc get_countries (common.Empty) returns (GetCountriesResponse);
+  rpc get_country_by_id (common.StringValue) returns (Country);
   rpc add_country (Country) returns (Country);
-  rpc delete_country (google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc get_colleges_for_country (google.protobuf.StringValue) returns (GetCollegesResponse);
-  rpc get_college_by_id (google.protobuf.StringValue) returns (College);
+  rpc delete_country (common.StringValue) returns (common.Empty);
+  rpc get_colleges_for_country (common.StringValue) returns (GetCollegesResponse);
+  rpc get_college_by_id (common.StringValue) returns (College);
   rpc add_college (College) returns (College);
-  rpc delete_college (google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc delete_college (common.StringValue) returns (common.Empty);
   // endregion auth
 
   // region billing
   rpc charge(ChargeRequest) returns (ChargeResponse);
-  rpc get_transaction(google.protobuf.StringValue) returns (Transaction);
-  rpc list_transactions(google.protobuf.Duration) returns (ListTransactionsResponse);
-  rpc delete_transaction(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc get_transaction(common.StringValue) returns (Transaction);
+  rpc list_transactions(common.Duration) returns (ListTransactionsResponse);
+  rpc delete_transaction(common.StringValue) returns (common.Empty);
   // endregion billing
 
   // region group
   // region channels
   rpc createChannel(CreateChannelRequest) returns (Channel);
-  rpc getChannel(google.protobuf.StringValue) returns (Channel);
-  rpc getChannelsForGroup(google.protobuf.StringValue) returns (stream ChannelList);
+  rpc getChannel(common.StringValue) returns (Channel);
+  rpc getChannelsForGroup(common.StringValue) returns (stream ChannelList);
   rpc updateChannel(Channel) returns (Channel);
-  rpc deleteChannel(google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc leaveChannel(ManageGroupOrChannel) returns (google.protobuf.Empty);
+  rpc deleteChannel(common.StringValue) returns (common.Empty);
+  rpc leaveChannel(ManageGroupOrChannel) returns (common.Empty);
   // user can only subscribe to / unsubscribe from public channels
-  rpc subscribeToChannel(ChannelSubscriptionRequest) returns (google.protobuf.Empty);
-  rpc unsubscribeFromChannel(ChannelSubscriptionRequest) returns (google.protobuf.Empty);
-  rpc manageChannelSubscription(ManageChannelSubscriptionRequest) returns (google.protobuf.Empty);
-  rpc getChannelSubscriptionsForUser(google.protobuf.StringValue) returns (stream ChannelSubscriptionList);
+  rpc subscribeToChannel(ChannelSubscriptionRequest) returns (common.Empty);
+  rpc unsubscribeFromChannel(ChannelSubscriptionRequest) returns (common.Empty);
+  rpc manageChannelSubscription(ManageChannelSubscriptionRequest) returns (common.Empty);
+  rpc getChannelSubscriptionsForUser(common.StringValue) returns (stream ChannelSubscriptionList);
   // all users can mute / unmute channels
-  rpc muteChannel(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
-  rpc unmuteChannel(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
+  rpc muteChannel(ManageGroupOrChannelRequest) returns (common.Empty);
+  rpc unmuteChannel(ManageGroupOrChannelRequest) returns (common.Empty);
 
   // endregion channels
 
   // region groups
   rpc createGroup(CreateGroupRequest) returns (Group);
-  rpc getGroup(google.protobuf.StringValue) returns (Group);
-  rpc getGroups(google.protobuf.StringValue) returns (stream GroupList);
+  rpc getGroup(common.StringValue) returns (Group);
+  rpc getGroups(common.StringValue) returns (stream GroupList);
   rpc updateGroup(Group) returns (Group);
-  rpc deleteGroup(DeleteGroupRequest) returns (google.protobuf.Empty);
-  rpc leaveGroup(ManageGroupOrChannel) returns (google.protobuf.Empty);
-  rpc inviteToGroup(GroupInviteRequest) returns (google.protobuf.Empty);
-  rpc getGroupInvitesForUser(google.protobuf.StringValue) returns (stream GroupInviteList);
-  rpc getGroupInvitesForGroup(google.protobuf.StringValue) returns (stream GroupInviteList);
-  rpc revokeGroupInvite(RevokeGroupInviteRequest) returns (google.protobuf.Empty);
-  rpc manageGroupInvite(ManageGroupInviteRequest) returns (google.protobuf.Empty);
-  rpc muteGroup(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
-  rpc unmuteGroup(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
-  rpc promoteGroupAdmin(ManageAdminRequest) returns (google.protobuf.Empty);
-  rpc demoteGroupAdmin(ManageAdminRequest) returns (google.protobuf.Empty);
-  rpc banFromGroup(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
-  rpc unbanFromGroup(ManageGroupOrChannelRequest) returns (google.protobuf.Empty);
+  rpc deleteGroup(DeleteGroupRequest) returns (common.Empty);
+  rpc leaveGroup(ManageGroupOrChannel) returns (common.Empty);
+  rpc inviteToGroup(GroupInviteRequest) returns (common.Empty);
+  rpc getGroupInvitesForUser(common.StringValue) returns (stream GroupInviteList);
+  rpc getGroupInvitesForGroup(common.StringValue) returns (stream GroupInviteList);
+  rpc revokeGroupInvite(RevokeGroupInviteRequest) returns (common.Empty);
+  rpc manageGroupInvite(ManageGroupInviteRequest) returns (common.Empty);
+  rpc muteGroup(ManageGroupOrChannelRequest) returns (common.Empty);
+  rpc unmuteGroup(ManageGroupOrChannelRequest) returns (common.Empty);
+  rpc promoteGroupAdmin(ManageAdminRequest) returns (common.Empty);
+  rpc demoteGroupAdmin(ManageAdminRequest) returns (common.Empty);
+  rpc banFromGroup(ManageGroupOrChannelRequest) returns (common.Empty);
+  rpc unbanFromGroup(ManageGroupOrChannelRequest) returns (common.Empty);
   // endregion group
 
   // region media
   rpc upload_media (UploadMediaRequest) returns (UploadMediaResponse);
   rpc upload_large_media (stream UploadMediaRequest) returns (UploadMediaResponse);
-  rpc get_media (google.protobuf.StringValue) returns (google.protobuf.StringValue);
-  rpc delete_media (google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc get_media (common.StringValue) returns (common.StringValue);
+  rpc delete_media (common.StringValue) returns (common.Empty);
   // endregion media
 
   // region messaging
   rpc sendMessage(MessageListItem) returns (MessageListItem);
-  rpc deleteMessage(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc deleteMessage(common.StringValue) returns (common.Empty);
   rpc getMessages(GetMessagesRequest) returns (stream MessageList);
   rpc editMessage(MessageListItem) returns (MessageListItem);
-  rpc reactToMessage(google.protobuf.StringValue) returns (MessageListItem);
+  rpc reactToMessage(common.StringValue) returns (MessageListItem);
   rpc createThread(MessageListItem) returns (MessageListItem);
-  rpc deleteThread(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc deleteThread(common.StringValue) returns (common.Empty);
   rpc getThreads(GetMessagesRequest) returns (stream MessageList);
   rpc editThread(MessageListItem) returns (MessageListItem);
-  rpc reactToThread(google.protobuf.StringValue) returns (MessageListItem);
-  rpc getDirectMessengers(google.protobuf.Empty) returns (stream DirectMessengerList);
+  rpc reactToThread(common.StringValue) returns (MessageListItem);
+  rpc getDirectMessengers(common.Empty) returns (stream DirectMessengerList);
   rpc getDirectMessages(GetMessagesRequest) returns (stream MessageList);
-  rpc addDirectMessenger(google.protobuf.StringValue) returns (DirectMessenger);
-  rpc removeDirectMessenger(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc addDirectMessenger(common.StringValue) returns (DirectMessenger);
+  rpc removeDirectMessenger(common.StringValue) returns (common.Empty);
   // endregion messaging
 
   // region sms
-  rpc send_phone_verification_code (google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (google.protobuf.Empty);
+  rpc send_phone_verification_code (common.StringValue) returns (common.Empty);
+  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (common.Empty);
   // endregion sms
 }

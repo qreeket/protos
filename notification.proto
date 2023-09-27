@@ -10,6 +10,7 @@ message SendNotificationRequest {
     string topic = 4;
   }
   map<string, string> data = 5;
+  NotificationChannelType channel_type = 6;
 }
 
 message SendNotificationResponse {
@@ -19,4 +20,15 @@ message SendNotificationResponse {
 message RegisterDeviceRequest {
   string token = 1;
   string topic = 2;
+}
+
+enum NotificationChannelType {
+  UNKNOWN = 0;
+  E2E_PERSONAL_CHAT = 1;
+  E2E_GROUP_CHAT = 2;
+  BROADCAST = 3;
+  TOPIC = 4;
+  SUBSCRIPTION = 5;
+  ACCOUNT = 6;
+  UPDATE = 7;
 }

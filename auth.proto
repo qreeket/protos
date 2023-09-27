@@ -2,7 +2,7 @@ syntax = "proto3";
 package qreeket;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
-import "google/protobuf/timestamp.proto";
+import "common.proto";
 
 message AuthenticateWithSocialAccountRequest {
   string phone_number = 1;
@@ -77,8 +77,8 @@ message Account {
   optional string phone_number = 2;
   string username = 3;
   string language_id = 4;
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
+  common.Timestamp updated_at = 6;
+  common.Timestamp created_at = 5;
   optional string avatar_url = 7;
   string country_id = 9;
   optional string device_id = 10;

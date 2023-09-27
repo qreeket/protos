@@ -3,13 +3,11 @@ package qreeket;
 
 option go_package = "github.com/qcodelabsllc/qreeket";
 
-import "google/protobuf/empty.proto";
-import "google/protobuf/wrappers.proto";
-
+import "common.proto";
 import "sms.proto";
 
 service SmsService {
   // phone verification
-  rpc send_phone_verification_code (google.protobuf.StringValue) returns (google.protobuf.Empty);
-  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (google.protobuf.Empty);
+  rpc send_phone_verification_code (common.StringValue) returns (common.Empty);
+  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (common.Empty);
 }

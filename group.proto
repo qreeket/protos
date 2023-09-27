@@ -2,7 +2,7 @@ syntax = "proto3";
 package qreeket;
 option go_package = "github.com/qcodelabsllc/qreeket";
 
-import "google/protobuf/timestamp.proto";
+import "common.proto";
 
 message DeleteGroupRequest {
   string group = 1;
@@ -93,8 +93,8 @@ message Channel {
   repeated Subscriber subscribers = 6;
   repeated string muted = 9;
   ChannelType type = 10;
-  google.protobuf.Timestamp created = 12;
-  google.protobuf.Timestamp updated = 13;
+  common.Timestamp created = 12;
+  common.Timestamp updated = 13;
   string id = 14;
   string group = 15;
   optional string icon = 16;
@@ -147,8 +147,8 @@ message Group {
   repeated string muted = 9;
   optional string link = 10;
   repeated string tags = 11;
-  google.protobuf.Timestamp created = 13;
-  google.protobuf.Timestamp updated = 14;
+  common.Timestamp created = 13;
+  common.Timestamp updated = 14;
 }
 
 message Subscriber {
