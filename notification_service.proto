@@ -6,7 +6,7 @@ import "notification.proto";
 import "common.proto";
 
 service NotificationService {
-  rpc sendNotification (SendNotificationRequest) returns (common.StringValue);
-  rpc registerDevice (RegisterDeviceRequest) returns (common.Empty);
-  rpc unregisterDevice (RegisterDeviceRequest) returns (common.Empty);
+  rpc sendNotification (SendNotificationRequest) returns (StringValue);
+  rpc registerDevice (RegisterDeviceRequest) returns (Empty);
+  rpc unregisterDevice (RegisterDeviceRequest) returns (Empty);
 }

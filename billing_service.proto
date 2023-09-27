@@ -8,7 +8,7 @@ import "common.proto";
 
 service BillingService {
   rpc charge(ChargeRequest) returns (ChargeResponse);
-  rpc get_transaction(common.StringValue) returns (Transaction);
-  rpc list_transactions(common.Duration) returns (ListTransactionsResponse);
-  rpc delete_transaction(common.StringValue) returns (common.Empty);
+  rpc get_transaction(StringValue) returns (Transaction);
+  rpc list_transactions(Duration) returns (ListTransactionsResponse);
+  rpc delete_transaction(StringValue) returns (Empty);
 }

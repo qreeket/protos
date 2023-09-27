@@ -9,42 +9,42 @@ import "auth.proto";
 // authentication service for user login, register, reset password, refresh token, logout and etc.
 service AuthService {
   // auth
-  rpc login (LoginRequest) returns (common.StringValue);
-  rpc register (RegisterRequest) returns (common.StringValue);
-  rpc reset_password (ResetPasswordRequest) returns (common.StringValue);
-  rpc request_password_reset (RequestPasswordResetRequest) returns (common.StringValue);
-  rpc logout (common.Empty) returns (common.Empty);
-  rpc verify_password (common.StringValue) returns (common.Empty);
+  rpc login (LoginRequest) returns (StringValue);
+  rpc register (RegisterRequest) returns (StringValue);
+  rpc reset_password (ResetPasswordRequest) returns (StringValue);
+  rpc request_password_reset (RequestPasswordResetRequest) returns (StringValue);
+  rpc logout (Empty) returns (Empty);
+  rpc verify_password (StringValue) returns (Empty);
 
   // premium account upgrade
-  rpc upgrade_to_premium (common.Empty) returns (common.Empty);
-  rpc downgrade_to_standard (common.Empty) returns (common.Empty);
+  rpc upgrade_to_premium (Empty) returns (Empty);
+  rpc downgrade_to_standard (Empty) returns (Empty);
 
   // request public access token for unauthenticated calls
-  rpc request_public_access_token (common.Empty) returns (common.StringValue);
+  rpc request_public_access_token (Empty) returns (StringValue);
 
   // validate access token from microservices for authorization (only for internal calls)
-  rpc validate_access_token (common.Empty) returns (ValidateAccessTokenResponse);
+  rpc validate_access_token (Empty) returns (ValidateAccessTokenResponse);
 
   // account
-  rpc get_account (common.Empty) returns (Account);
-  rpc get_account_by_phone_number (common.StringValue) returns (Account);
-  rpc get_account_by_id (common.StringValue) returns (Account);
+  rpc get_account (Empty) returns (Account);
+  rpc get_account_by_phone_number (StringValue) returns (Account);
+  rpc get_account_by_id (StringValue) returns (Account);
   rpc update_account (Account) returns (Account);
-  rpc delete_account (common.Empty) returns (common.Empty);
-  rpc authenticate_account (AuthenticateWithSocialAccountRequest) returns (common.StringValue);
-  rpc check_email (common.StringValue) returns (common.Empty);
-  rpc check_phone_number (common.StringValue) returns (common.Empty);
+  rpc delete_account (Empty) returns (Empty);
+  rpc authenticate_account (AuthenticateWithSocialAccountRequest) returns (StringValue);
+  rpc check_email (StringValue) returns (Empty);
+  rpc check_phone_number (StringValue) returns (Empty);
 
   // country
-  rpc get_countries (common.Empty) returns (GetCountriesResponse);
-  rpc get_country_by_id (common.StringValue) returns (Country);
+  rpc get_countries (Empty) returns (GetCountriesResponse);
+  rpc get_country_by_id (StringValue) returns (Country);
   rpc add_country (Country) returns (Country);
-  rpc delete_country (common.StringValue) returns (common.Empty);
+  rpc delete_country (StringValue) returns (Empty);
 
   // college
-  rpc get_colleges_for_country (common.StringValue) returns (GetCollegesResponse);
-  rpc get_college_by_id (common.StringValue) returns (College);
+  rpc get_colleges_for_country (StringValue) returns (GetCollegesResponse);
+  rpc get_college_by_id (StringValue) returns (College);
   rpc add_college (College) returns (College);
-  rpc delete_college (common.StringValue) returns (common.Empty);
+  rpc delete_college (StringValue) returns (Empty);
 }

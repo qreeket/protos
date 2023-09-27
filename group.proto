@@ -93,8 +93,8 @@ message Channel {
   repeated Subscriber subscribers = 6;
   repeated string muted = 9;
   ChannelType type = 10;
-  common.Timestamp created = 12;
-  common.Timestamp updated = 13;
+  Timestamp created = 12;
+  Timestamp updated = 13;
   string id = 14;
   string group = 15;
   optional string icon = 16;
@@ -147,8 +147,8 @@ message Group {
   repeated string muted = 9;
   optional string link = 10;
   repeated string tags = 11;
-  common.Timestamp created = 13;
-  common.Timestamp updated = 14;
+  Timestamp created = 13;
+  Timestamp updated = 14;
 }
 
 message Subscriber {

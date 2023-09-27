@@ -7,19 +7,19 @@ import "messaging.proto";
 
 service MessagingService {
   rpc sendMessage(MessageListItem) returns (MessageListItem);
-  rpc deleteMessage(common.StringValue) returns (common.Empty);
+  rpc deleteMessage(StringValue) returns (Empty);
   rpc getMessages(GetMessagesRequest) returns (stream MessageList);
   rpc editMessage(MessageListItem) returns (MessageListItem);
-  rpc reactToMessage(common.StringValue) returns (MessageListItem);
+  rpc reactToMessage(StringValue) returns (MessageListItem);
 
   rpc createThread(MessageListItem) returns (MessageListItem);
-  rpc deleteThread(common.StringValue) returns (common.Empty);
+  rpc deleteThread(StringValue) returns (Empty);
   rpc getThreads(GetMessagesRequest) returns (stream MessageList);
   rpc editThread(MessageListItem) returns (MessageListItem);
-  rpc reactToThread(common.StringValue) returns (MessageListItem);
+  rpc reactToThread(StringValue) returns (MessageListItem);
 
-  rpc getDirectMessengers(common.Empty) returns (stream DirectMessengerList);
+  rpc getDirectMessengers(Empty) returns (stream DirectMessengerList);
   rpc getDirectMessages(GetMessagesRequest) returns (stream MessageList);
-  rpc addDirectMessenger(common.StringValue) returns (DirectMessenger);
-  rpc removeDirectMessenger(common.StringValue) returns (common.Empty);
+  rpc addDirectMessenger(StringValue) returns (DirectMessenger);
+  rpc removeDirectMessenger(StringValue) returns (Empty);
 }

@@ -7,13 +7,13 @@ import "common.proto";
 
 service AnnouncementService {
   // CRUD operations for Announcements
-  rpc GetAnnouncements(common.Empty) returns (stream AnnouncementsList);
-  rpc GetAnnouncement(common.StringValue) returns (Announcement);
+  rpc GetAnnouncements(Empty) returns (stream AnnouncementsList);
+  rpc GetAnnouncement(StringValue) returns (Announcement);
   rpc CreateAnnouncement(CreateAnnouncementRequest) returns (Announcement);
   rpc UpdateAnnouncement(UpdateAnnouncementRequest) returns (Announcement);
-  rpc DeleteAnnouncement(common.StringValue) returns (common.Empty);
+  rpc DeleteAnnouncement(StringValue) returns (Empty);
 
   // Subscribe to Announcements
-  rpc SubscribeToAnnouncements(common.StringValue) returns (common.Empty);
-  rpc UnsubscribeFromAnnouncements(common.StringValue) returns (common.Empty);
+  rpc SubscribeToAnnouncements(StringValue) returns (Empty);
+  rpc UnsubscribeFromAnnouncements(StringValue) returns (Empty);
 }

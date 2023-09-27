@@ -77,8 +77,8 @@ message Account {
   optional string phone_number = 2;
   string username = 3;
   string language_id = 4;
-  common.Timestamp updated_at = 6;
-  common.Timestamp created_at = 5;
+  Timestamp updated_at = 6;
+  Timestamp created_at = 5;
   optional string avatar_url = 7;
   string country_id = 9;
   optional string device_id = 10;

@@ -22,8 +22,8 @@ message Announcement {
   string title = 2;
   string body = 3;
   string author = 4;
-  optional common.StringValue image_url = 5;
-  optional common.StringValue link_url = 6;
-  common.Timestamp created_at = 7;
-  common.Timestamp updated_at = 8;
+  StringValue image_url = 5;
+  StringValue link_url = 6;
+  Timestamp created_at = 7;
+  Timestamp updated_at = 8;
 }

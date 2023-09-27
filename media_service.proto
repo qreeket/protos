@@ -13,9 +13,9 @@ service MediaService {
   rpc upload_large_media (stream UploadMediaRequest) returns (UploadMediaResponse);
 
   // get media takes a media url and returns a base64 encoded string
-  rpc get_media (common.StringValue) returns (common.StringValue);
+  rpc get_media (StringValue) returns (StringValue);
 
   // delete media takes a media url and deletes the media
-  rpc delete_media (common.StringValue) returns (common.Empty);
+  rpc delete_media (StringValue) returns (Empty);
 
 }

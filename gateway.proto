@@ -13,116 +13,116 @@ import "sms.proto";
 
 service QreeketGatewayService {
   // region announcement
-  rpc GetAnnouncements(common.Empty) returns (stream AnnouncementsList);
-  rpc GetAnnouncement(common.StringValue) returns (Announcement);
+  rpc GetAnnouncements(Empty) returns (stream AnnouncementsList);
+  rpc GetAnnouncement(StringValue) returns (Announcement);
   rpc CreateAnnouncement(CreateAnnouncementRequest) returns (Announcement);
   rpc UpdateAnnouncement(UpdateAnnouncementRequest) returns (Announcement);
-  rpc DeleteAnnouncement(common.StringValue) returns (common.Empty);
-  rpc SubscribeToAnnouncements(common.StringValue) returns (common.Empty);
-  rpc UnsubscribeFromAnnouncements(common.StringValue) returns (common.Empty);
+  rpc DeleteAnnouncement(StringValue) returns (Empty);
+  rpc SubscribeToAnnouncements(StringValue) returns (Empty);
+  rpc UnsubscribeFromAnnouncements(StringValue) returns (Empty);
   // endregion announcement
 
   // region auth
-  rpc login (LoginRequest) returns (common.StringValue);
-  rpc register (RegisterRequest) returns (common.StringValue);
-  rpc reset_password (ResetPasswordRequest) returns (common.StringValue);
-  rpc request_password_reset (RequestPasswordResetRequest) returns (common.StringValue);
-  rpc logout (common.Empty) returns (common.Empty);
-  rpc verify_password (common.StringValue) returns (common.Empty);
-  rpc upgrade_to_premium (common.Empty) returns (common.Empty);
-  rpc downgrade_to_standard (common.Empty) returns (common.Empty);
-  rpc request_public_access_token (common.Empty) returns (common.StringValue);
-  rpc validate_access_token (common.Empty) returns (ValidateAccessTokenResponse);
-  rpc get_account (common.Empty) returns (Account);
-  rpc get_account_by_phone_number (common.StringValue) returns (Account);
-  rpc get_account_by_id (common.StringValue) returns (Account);
+  rpc login (LoginRequest) returns (StringValue);
+  rpc register (RegisterRequest) returns (StringValue);
+  rpc reset_password (ResetPasswordRequest) returns (StringValue);
+  rpc request_password_reset (RequestPasswordResetRequest) returns (StringValue);
+  rpc logout (Empty) returns (Empty);
+  rpc verify_password (StringValue) returns (Empty);
+  rpc upgrade_to_premium (Empty) returns (Empty);
+  rpc downgrade_to_standard (Empty) returns (Empty);
+  rpc request_public_access_token (Empty) returns (StringValue);
+  rpc validate_access_token (Empty) returns (ValidateAccessTokenResponse);
+  rpc get_account (Empty) returns (Account);
+  rpc get_account_by_phone_number (StringValue) returns (Account);
+  rpc get_account_by_id (StringValue) returns (Account);
   rpc update_account (Account) returns (Account);
-  rpc delete_account (common.Empty) returns (common.Empty);
-  rpc authenticate_account (AuthenticateWithSocialAccountRequest) returns (common.StringValue);
-  rpc check_email (common.StringValue) returns (common.Empty);
-  rpc check_phone_number (common.StringValue) returns (common.Empty);
-  rpc get_countries (common.Empty) returns (GetCountriesResponse);
-  rpc get_country_by_id (common.StringValue) returns (Country);
+  rpc delete_account (Empty) returns (Empty);
+  rpc authenticate_account (AuthenticateWithSocialAccountRequest) returns (StringValue);
+  rpc check_email (StringValue) returns (Empty);
+  rpc check_phone_number (StringValue) returns (Empty);
+  rpc get_countries (Empty) returns (GetCountriesResponse);
+  rpc get_country_by_id (StringValue) returns (Country);
   rpc add_country (Country) returns (Country);
-  rpc delete_country (common.StringValue) returns (common.Empty);
-  rpc get_colleges_for_country (common.StringValue) returns (GetCollegesResponse);
-  rpc get_college_by_id (common.StringValue) returns (College);
+  rpc delete_country (StringValue) returns (Empty);
+  rpc get_colleges_for_country (StringValue) returns (GetCollegesResponse);
+  rpc get_college_by_id (StringValue) returns (College);
   rpc add_college (College) returns (College);
-  rpc delete_college (common.StringValue) returns (common.Empty);
+  rpc delete_college (StringValue) returns (Empty);
   // endregion auth
 
   // region billing
   rpc charge(ChargeRequest) returns (ChargeResponse);
-  rpc get_transaction(common.StringValue) returns (Transaction);
-  rpc list_transactions(common.Duration) returns (ListTransactionsResponse);
-  rpc delete_transaction(common.StringValue) returns (common.Empty);
+  rpc get_transaction(StringValue) returns (Transaction);
+  rpc list_transactions(Duration) returns (ListTransactionsResponse);
+  rpc delete_transaction(StringValue) returns (Empty);
   // endregion billing
 
   // region group
   // region channels
   rpc createChannel(CreateChannelRequest) returns (Channel);
-  rpc getChannel(common.StringValue) returns (Channel);
-  rpc getChannelsForGroup(common.StringValue) returns (stream ChannelList);
+  rpc getChannel(StringValue) returns (Channel);
+  rpc getChannelsForGroup(StringValue) returns (stream ChannelList);
   rpc updateChannel(Channel) returns (Channel);
-  rpc deleteChannel(common.StringValue) returns (common.Empty);
-  rpc leaveChannel(ManageGroupOrChannel) returns (common.Empty);
+  rpc deleteChannel(StringValue) returns (Empty);
+  rpc leaveChannel(ManageGroupOrChannel) returns (Empty);
   // user can only subscribe to / unsubscribe from public channels
-  rpc subscribeToChannel(ChannelSubscriptionRequest) returns (common.Empty);
-  rpc unsubscribeFromChannel(ChannelSubscriptionRequest) returns (common.Empty);
-  rpc manageChannelSubscription(ManageChannelSubscriptionRequest) returns (common.Empty);
-  rpc getChannelSubscriptionsForUser(common.StringValue) returns (stream ChannelSubscriptionList);
+  rpc subscribeToChannel(ChannelSubscriptionRequest) returns (Empty);
+  rpc unsubscribeFromChannel(ChannelSubscriptionRequest) returns (Empty);
+  rpc manageChannelSubscription(ManageChannelSubscriptionRequest) returns (Empty);
+  rpc getChannelSubscriptionsForUser(StringValue) returns (stream ChannelSubscriptionList);
   // all users can mute / unmute channels
-  rpc muteChannel(ManageGroupOrChannelRequest) returns (common.Empty);
-  rpc unmuteChannel(ManageGroupOrChannelRequest) returns (common.Empty);
+  rpc muteChannel(ManageGroupOrChannelRequest) returns (Empty);
+  rpc unmuteChannel(ManageGroupOrChannelRequest) returns (Empty);
 
   // endregion channels
 
   // region groups
   rpc createGroup(CreateGroupRequest) returns (Group);
-  rpc getGroup(common.StringValue) returns (Group);
-  rpc getGroups(common.StringValue) returns (stream GroupList);
+  rpc getGroup(StringValue) returns (Group);
+  rpc getGroups(StringValue) returns (stream GroupList);
   rpc updateGroup(Group) returns (Group);
-  rpc deleteGroup(DeleteGroupRequest) returns (common.Empty);
-  rpc leaveGroup(ManageGroupOrChannel) returns (common.Empty);
-  rpc inviteToGroup(GroupInviteRequest) returns (common.Empty);
-  rpc getGroupInvitesForUser(common.StringValue) returns (stream GroupInviteList);
-  rpc getGroupInvitesForGroup(common.StringValue) returns (stream GroupInviteList);
-  rpc revokeGroupInvite(RevokeGroupInviteRequest) returns (common.Empty);
-  rpc manageGroupInvite(ManageGroupInviteRequest) returns (common.Empty);
-  rpc muteGroup(ManageGroupOrChannelRequest) returns (common.Empty);
-  rpc unmuteGroup(ManageGroupOrChannelRequest) returns (common.Empty);
-  rpc promoteGroupAdmin(ManageAdminRequest) returns (common.Empty);
-  rpc demoteGroupAdmin(ManageAdminRequest) returns (common.Empty);
-  rpc banFromGroup(ManageGroupOrChannelRequest) returns (common.Empty);
-  rpc unbanFromGroup(ManageGroupOrChannelRequest) returns (common.Empty);
+  rpc deleteGroup(DeleteGroupRequest) returns (Empty);
+  rpc leaveGroup(ManageGroupOrChannel) returns (Empty);
+  rpc inviteToGroup(GroupInviteRequest) returns (Empty);
+  rpc getGroupInvitesForUser(StringValue) returns (stream GroupInviteList);
+  rpc getGroupInvitesForGroup(StringValue) returns (stream GroupInviteList);
+  rpc revokeGroupInvite(RevokeGroupInviteRequest) returns (Empty);
+  rpc manageGroupInvite(ManageGroupInviteRequest) returns (Empty);
+  rpc muteGroup(ManageGroupOrChannelRequest) returns (Empty);
+  rpc unmuteGroup(ManageGroupOrChannelRequest) returns (Empty);
+  rpc promoteGroupAdmin(ManageAdminRequest) returns (Empty);
+  rpc demoteGroupAdmin(ManageAdminRequest) returns (Empty);
+  rpc banFromGroup(ManageGroupOrChannelRequest) returns (Empty);
+  rpc unbanFromGroup(ManageGroupOrChannelRequest) returns (Empty);
   // endregion group
 
   // region media
   rpc upload_media (UploadMediaRequest) returns (UploadMediaResponse);
   rpc upload_large_media (stream UploadMediaRequest) returns (UploadMediaResponse);
-  rpc get_media (common.StringValue) returns (common.StringValue);
-  rpc delete_media (common.StringValue) returns (common.Empty);
+  rpc get_media (StringValue) returns (StringValue);
+  rpc delete_media (StringValue) returns (Empty);
   // endregion media
 
   // region messaging
   rpc sendMessage(MessageListItem) returns (MessageListItem);
-  rpc deleteMessage(common.StringValue) returns (common.Empty);
+  rpc deleteMessage(StringValue) returns (Empty);
   rpc getMessages(GetMessagesRequest) returns (stream MessageList);
   rpc editMessage(MessageListItem) returns (MessageListItem);
-  rpc reactToMessage(common.StringValue) returns (MessageListItem);
+  rpc reactToMessage(StringValue) returns (MessageListItem);
   rpc createThread(MessageListItem) returns (MessageListItem);
-  rpc deleteThread(common.StringValue) returns (common.Empty);
+  rpc deleteThread(StringValue) returns (Empty);
   rpc getThreads(GetMessagesRequest) returns (stream MessageList);
   rpc editThread(MessageListItem) returns (MessageListItem);
-  rpc reactToThread(common.StringValue) returns (MessageListItem);
-  rpc getDirectMessengers(common.Empty) returns (stream DirectMessengerList);
+  rpc reactToThread(StringValue) returns (MessageListItem);
+  rpc getDirectMessengers(Empty) returns (stream DirectMessengerList);
   rpc getDirectMessages(GetMessagesRequest) returns (stream MessageList);
-  rpc addDirectMessenger(common.StringValue) returns (DirectMessenger);
-  rpc removeDirectMessenger(common.StringValue) returns (common.Empty);
+  rpc addDirectMessenger(StringValue) returns (DirectMessenger);
+  rpc removeDirectMessenger(StringValue) returns (Empty);
   // endregion messaging
 
   // region sms
-  rpc send_phone_verification_code (common.StringValue) returns (common.Empty);
-  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (common.Empty);
+  rpc send_phone_verification_code (StringValue) returns (Empty);
+  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (Empty);
   // endregion sms
 }

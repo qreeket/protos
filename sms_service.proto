@@ -8,6 +8,6 @@ import "sms.proto";
 
 service SmsService {
   // phone verification
-  rpc send_phone_verification_code (common.StringValue) returns (common.Empty);
-  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (common.Empty);
+  rpc send_phone_verification_code (StringValue) returns (Empty);
+  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (Empty);
 }
