@@ -15,3 +15,8 @@ message SendNotificationRequest {
 message SendNotificationResponse {
   string message_id = 1;
 }
+
+message RegisterDeviceRequest {
+  string token = 1;
+  string topic = 2;
+}
