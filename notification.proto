@@ -26,9 +26,10 @@ enum NotificationChannelType {
   UNKNOWN = 0;
   E2E_PERSONAL_CHAT = 1;
   E2E_GROUP_CHAT = 2;
-  BROADCAST = 3;
+  E2E_GROUP_CHAT_INVITATION = 3;
   TOPIC = 4;
   SUBSCRIPTION = 5;
   ACCOUNT = 6;
   UPDATE = 7;
+  BROADCAST = 8;
 }
