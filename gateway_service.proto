@@ -1,0 +1,138 @@
+syntax = "proto3";
+package qreeket;
+option go_package = "github.com/qcodelabsllc/qreeket";
+
+import "announcement.proto";
+import "common.proto";
+import "auth.proto";
+import "billing.proto";
+import "group.proto";
+import "gateway.proto";
+import "media.proto";
+import "messaging.proto";
+import "sms.proto";
+
+service QreeketGatewayService {
+  // region announcement
+  rpc GetAnnouncements(Empty) returns (stream AnnouncementsList);
+  rpc GetAnnouncement(StringValue) returns (Announcement);
+  rpc CreateAnnouncement(CreateAnnouncementRequest) returns (Announcement);
+  rpc UpdateAnnouncement(UpdateAnnouncementRequest) returns (Announcement);
+  rpc DeleteAnnouncement(StringValue) returns (Empty);
+  rpc SubscribeToAnnouncements(StringValue) returns (Empty);
+  rpc UnsubscribeFromAnnouncements(StringValue) returns (Empty);
+  // endregion announcement
+
+  // region auth
+  rpc login (LoginRequest) returns (StringValue);
+  rpc register (RegisterRequest) returns (StringValue);
+  rpc reset_password (ResetPasswordRequest) returns (StringValue);
+  rpc request_password_reset (RequestPasswordResetRequest) returns (StringValue);
+  rpc logout (Empty) returns (Empty);
+  rpc verify_password (StringValue) returns (Empty);
+  rpc upgrade_to_premium (Empty) returns (Empty);
+  rpc downgrade_to_standard (Empty) returns (Empty);
+  rpc request_public_access_token (Empty) returns (StringValue);
+  rpc validate_access_token (Empty) returns (ValidateAccessTokenResponse);
+  rpc get_account (Empty) returns (Account);
+  rpc get_account_by_phone_number (StringValue) returns (Account);
+  rpc get_account_by_id (StringValue) returns (Account);
+  rpc update_account (Account) returns (Account);
+  rpc delete_account (Empty) returns (Empty);
+  rpc authenticate_account (AuthenticateWithSocialAccountRequest) returns (StringValue);
+  rpc check_email (StringValue) returns (Empty);
+  rpc check_phone_number (StringValue) returns (Empty);
+  rpc get_countries (Empty) returns (GetCountriesResponse);
+  rpc get_country_by_id (StringValue) returns (Country);
+  rpc add_country (Country) returns (Country);
+  rpc delete_country (StringValue) returns (Empty);
+  rpc get_colleges_for_country (StringValue) returns (GetCollegesResponse);
+  rpc get_college_by_id (StringValue) returns (College);
+  rpc add_college (College) returns (College);
+  rpc delete_college (StringValue) returns (Empty);
+  // endregion auth
+
+  // region billing
+  rpc charge(ChargeRequest) returns (ChargeResponse);
+  rpc get_transaction(StringValue) returns (Transaction);
+  rpc list_transactions(Duration) returns (ListTransactionsResponse);
+  rpc delete_transaction(StringValue) returns (Empty);
+  // endregion billing
+
+  // region group
+  // region channels
+  rpc createChannel(CreateChannelRequest) returns (Channel);
+  rpc getChannel(StringValue) returns (Channel);
+  rpc getChannelsForGroup(StringValue) returns (stream ChannelList);
+  rpc updateChannel(Channel) returns (Channel);
+  rpc deleteChannel(StringValue) returns (Empty);
+  rpc leaveChannel(ManageGroupOrChannel) returns (Empty);
+  // user can only subscribe to / unsubscribe from public channels
+  rpc subscribeToChannel(ChannelSubscriptionRequest) returns (Empty);
+  rpc unsubscribeFromChannel(ChannelSubscriptionRequest) returns (Empty);
+  rpc manageChannelSubscription(ManageChannelSubscriptionRequest) returns (Empty);
+  rpc getChannelSubscriptionsForUser(StringValue) returns (stream ChannelSubscriptionList);
+  // all users can mute / unmute channels
+  rpc muteChannel(ManageGroupOrChannelRequest) returns (Empty);
+  rpc unmuteChannel(ManageGroupOrChannelRequest) returns (Empty);
+
+  // endregion channels
+
+  // region groups
+  rpc createGroup(CreateGroupRequest) returns (Group);
+  rpc getGroup(StringValue) returns (Group);
+  rpc getGroups(StringValue) returns (stream GroupList);
+  rpc updateGroup(Group) returns (Group);
+  rpc deleteGroup(DeleteGroupRequest) returns (Empty);
+  rpc leaveGroup(ManageGroupOrChannel) returns (Empty);
+  rpc inviteToGroup(GroupInviteRequest) returns (Empty);
+  rpc getGroupInvitesForUser(StringValue) returns (stream GroupInviteList);
+  rpc getGroupInvitesForGroup(StringValue) returns (stream GroupInviteList);
+  rpc revokeGroupInvite(RevokeGroupInviteRequest) returns (Empty);
+  rpc manageGroupInvite(ManageGroupInviteRequest) returns (Empty);
+  rpc muteGroup(ManageGroupOrChannelRequest) returns (Empty);
+  rpc unmuteGroup(ManageGroupOrChannelRequest) returns (Empty);
+  rpc promoteGroupAdmin(ManageAdminRequest) returns (Empty);
+  rpc demoteGroupAdmin(ManageAdminRequest) returns (Empty);
+  rpc banFromGroup(ManageGroupOrChannelRequest) returns (Empty);
+  rpc unbanFromGroup(ManageGroupOrChannelRequest) returns (Empty);
+  // endregion group
+
+  // region media
+  rpc upload_media (UploadMediaRequest) returns (UploadMediaResponse);
+  rpc upload_large_media (stream UploadMediaRequest) returns (UploadMediaResponse);
+  rpc get_media (StringValue) returns (StringValue);
+  rpc delete_media (StringValue) returns (Empty);
+  // endregion media
+
+  // region messaging
+  rpc sendMessage(MessageListItem) returns (MessageListItem);
+  rpc deleteMessage(StringValue) returns (Empty);
+  rpc getMessages(GetMessagesRequest) returns (stream MessageList);
+  rpc editMessage(MessageListItem) returns (MessageListItem);
+  rpc reactToMessage(StringValue) returns (MessageListItem);
+  rpc createThread(MessageListItem) returns (MessageListItem);
+  rpc deleteThread(StringValue) returns (Empty);
+  rpc getThreads(GetMessagesRequest) returns (stream MessageList);
+  rpc editThread(MessageListItem) returns (MessageListItem);
+  rpc reactToThread(StringValue) returns (MessageListItem);
+  rpc getDirectMessengers(Empty) returns (stream DirectMessengerList);
+  rpc getDirectMessages(GetMessagesRequest) returns (stream MessageList);
+  rpc addDirectMessenger(StringValue) returns (DirectMessenger);
+  rpc removeDirectMessenger(StringValue) returns (Empty);
+  // endregion messaging
+
+  // region sms
+  rpc send_phone_verification_code (StringValue) returns (Empty);
+  rpc verify_phone_verification_code (VerifyPhoneRequest) returns (Empty);
+  // endregion sms
+}
+
+// A service that provides access to the common gateway APIs.
+service QreeketGatewayCommonService {
+  // Get the recent app version.
+  rpc check_for_updates(GetAppVersionRequest) returns (GetAppVersionResponse);
+
+  // Check if the server is online (returns true if the server is online).
+  rpc check_server_status(Empty) returns (BoolValue);
+}
