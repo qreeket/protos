@@ -101,18 +101,6 @@ message GeoPoint {
   string address = 3;
 }
 
-// A filter on a specific duration of time.
-enum DateFilter {
-  TODAY = 0;
-  YESTERDAY = 1;
-  LAST_7_DAYS = 2;
-  LAST_30_DAYS = 3;
-  LAST_90_DAYS = 4;
-  LAST_180_DAYS = 5;
-  LAST_365_DAYS = 6;
-  ALL_TIME = 7;
-}
-
 // Duration of time.
 message Duration {
   // The number of seconds in the duration.
